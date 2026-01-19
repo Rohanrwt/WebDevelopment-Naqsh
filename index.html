@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO: One clear, keyword-focused title -->
+    <title>Naqsh Resort | Boutique Resort in Rishikesh</title>
+
+    <!-- SEO: Meta description for search results -->
+    <meta
+      name="description"
+      content="Escape to Naqsh Resort in Rishikesh. Valley views, peaceful stays, and group trip packages. Book directly for best rates."
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- 
+        HEADER: Contains logo + navigation
+        Kept outside <main> because it's not the main content
+    -->
+    <header id="site-header">
+      <div class="logo">
+        <a href="/">Naqsh Resort</a>
+      </div>
+
+      <!-- 
+            NAV: Semantic tag for navigation
+            Screen readers announce this as "navigation"
+            Only 4 links - minimal, focused
+        -->
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="group-booking.html">Group Trips</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 
+        MAIN: Wraps all primary content
+        Important for accessibility - tells screen readers "content starts here"
+    -->
+    <main>
+      <!-- 
+            HERO SECTION
+            Job: Create emotional pull + ONE clear action
+            Not selling yet, just hooking them
+        -->
+      <section id="hero">
+        <div class="hero-content">
+          <h1>Wake Up to Valley Silence</h1>
+          <p class="hero-subtitle">
+            A 12-room hideaway in Rishikesh, away from the tourist chaos
+          </p>
+          <a href="#availability" class="btn btn-primary">Check Availability</a>
+        </div>
+        <!-- Background image will be added via CSS -->
+      </section>
+
+      <!-- 
+            AVAILABILITY SECTION
+            Job: The conversion engine. This is where bookings start.
+            Two paths: Individual rooms OR Full property
+        -->
+      <section id="availability">
+        <h2>Plan Your Stay</h2>
+
+        <!-- 
+                Booking Type Selection
+                MVP Doc says: Show both options, but don't allow conflicts
+            -->
+        <div class="booking-type-selector">
+          <button type="button" class="booking-type active" data-type="room">
+            Book Rooms
+          </button>
+          <button type="button" class="booking-type" data-type="group">
+            Book Entire Resort
+          </button>
+        </div>
+
+        <!-- 
+                Availability Form
+                Note: action="#" for now - we'll connect to backend later
+                method="POST" because we're sending data
+            -->
+        <form id="availability-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin" name="checkin" required />
+          </div>
+
+          <div class="form-group">
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout" name="checkout" required />
+          </div>
+
+          <div class="form-group">
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests" required>
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5+ Guests</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Check Availability
+          </button>
+        </form>
+
+        <!-- Group booking info - shown when "Book Entire Resort" is selected -->
+        <div id="group-info" class="hidden">
+          <p class="price-highlight">₹60,000 per night</p>
+          <p>Up to 30 guests • Bonfire • BBQ • Music Night</p>
+        </div>
+      </section>
+
+      <!-- 
+            WHY NAQSH SECTION
+            Job: Handle objections, build trust
+            Not "about us" - it's "why this is right for YOU"
+        -->
+      <section id="why-naqsh">
+        <h2>Why Naqsh?</h2>
+
+        <div class="reasons-grid">
+          <!-- Reason 1 -->
+          <div class="reason">
+            <h3>Valley, Not Highway</h3>
+            <p>
+              Most Rishikesh resorts sit on noisy roads. We're tucked in
+              Mohanchatti, overlooking the valley.
+            </p>
+          </div>
+
+          <!-- Reason 2 -->
+          <div class="reason">
+            <h3>12 Rooms, Not 120</h3>
+            <p>
+              Small enough to feel private. No crowded pools or buffet chaos.
+            </p>
+          </div>
+
+          <!-- Reason 3 -->
+          <div class="reason">
+            <h3>Honest Pricing</h3>
+            <p>
+              What you see is what you pay. No hidden charges, no surge pricing
+              drama.
+            </p>
+          </div>
+
+          <!-- Reason 4 -->
+          <div class="reason">
+            <h3>Group-Friendly</h3>
+            <p>
+              Book the entire property for your squad. Bonfire, BBQ, and music
+              included.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+            TESTIMONIALS SECTION
+            Job: Social proof from real guests
+            MVP Doc: Link to Google Maps reviews for authenticity
+        -->
+      <section id="testimonials">
+        <h2>What Guests Say</h2>
+
+        <!-- Google Rating Badge -->
+        <div class="google-rating">
+          <span class="rating-score">4.8</span>
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-source">Google Reviews</span>
+        </div>
+
+        <div class="testimonials-grid">
+          <!-- Testimonial 1 -->
+          <blockquote class="testimonial">
+            <p>
+              "Finally a place in Rishikesh that's actually peaceful. No
+              honking, no crowd. Just valley views and birds."
+            </p>
+            <footer>
+              <cite>— Amit K.</cite>
+            </footer>
+          </blockquote>
+
+          <!-- Testimonial 2 -->
+          <blockquote class="testimonial">
+            <p>
+              "We booked the entire resort for our friend group. The bonfire
+              night was unforgettable."
+            </p>
+            <footer>
+              <cite>— Priya M.</cite>
+            </footer>
+          </blockquote>
+
+          <!-- Testimonial 3 -->
+          <blockquote class="testimonial">
+            <p>"Clean rooms, honest staff, no overcharging. Will come back."</p>
+            <footer>
+              <cite>— Rahul S.</cite>
+            </footer>
+          </blockquote>
+        </div>
+
+        <!-- Link to actual Google reviews for credibility -->
+        <a href="#" class="btn btn-secondary">See All Reviews on Google</a>
+      </section>
+    </main>
+
+    <!-- 
+        FOOTER
+        Job: Trust signals, quick links, contact info
+        NAP consistency important for local SEO (Name, Address, Phone)
+    -->
+    <footer id="site-footer">
+      <div class="footer-grid">
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <address>
+            <p>Naqsh Resort</p>
+            <p>Mohanchatti, Rishikesh</p>
+            <p>Uttarakhand, India</p>
+            <p><a href="tel:+919045467967">+91 9045467967</a></p>
+            <p>
+              <a href="mailto:stay@naqshresort.com">stay@naqshresort.com</a>
+            </p>
+          </address>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="rooms.html">Our Rooms</a></li>
+            <li><a href="group-booking.html">Group Bookings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Trust/Legal -->
+        <div class="footer-section">
+          <h4>Policies</h4>
+          <ul>
+            <li><a href="#">Cancellation Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Naqsh Resort. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript at the bottom - doesn't block page rendering -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
