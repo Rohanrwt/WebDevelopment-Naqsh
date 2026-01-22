@@ -16,11 +16,12 @@
    ---------------- */
 :root {
   /* Colors */
-  --color-primary: #2d5a3d; /* Deep forest green */
-  --color-primary-dark: #1e3d29; /* Darker green for hover */
+  --color-primary: #222222; /* Premium Charcoal (matches logo text) */
+  --color-primary-dark: #000000; /* Pure Black for hover */
   --color-secondary: #c4785a; /* Warm terracotta */
   --color-secondary-dark: #a65f43; /* Darker terracotta */
-  --color-accent: #b8956b; /* Muted gold */
+  --color-accent: #d4af37; /* Luxury Gold */
+  --color-accent-hover: #b4942b; /* Darker Gold */
 
   --color-bg: #faf6f1; /* Soft cream */
   --color-bg-alt: #f0ebe3; /* Slightly darker cream */
@@ -97,21 +98,23 @@ h6 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem; /* Increased for impact */
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   margin-bottom: var(--space-md);
+  color: var(--color-primary); /* Consistent heading color */
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 h4 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
 }
 
 p {
@@ -125,7 +128,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-accent); /* Gold on hover */
 }
 
 /* ----------------
@@ -141,31 +144,34 @@ a:hover {
 
 /* ----------------
    BUTTONS
-   Two styles: Primary (green) & Secondary (outlined)
+   Updated for higher conversion contrast
    ---------------- */
 .btn {
   display: inline-block;
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 600;
-  padding: 0.875rem 2rem;
+  font-weight: 700; /* Bolder button text */
+  padding: 1rem 2.5rem; /* Larger touch target */
   border-radius: var(--radius-full);
   border: 2px solid transparent;
   cursor: pointer;
   transition: all var(--transition-normal);
   text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase; /* Premium feel */
+  font-size: 0.9rem;
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-text-on-dark);
-  border-color: var(--color-primary);
+  background-color: var(--color-accent); /* GOLD BUTTONS */
+  color: var(--color-primary-dark); /* Dark text for contrast against gold */
+  border-color: var(--color-accent);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  color: var(--color-text-on-dark);
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-primary-dark);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -196,15 +202,21 @@ a:hover {
   z-index: 1000;
 }
 
+/* Hide mobile toggle by default */
+#mobile-menu-toggle {
+  display: none;
+}
+
 .logo a {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2rem; /* Larger logo text */
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text); /* Neutral logo color, let accent pop elsewhere */
+  letter-spacing: -0.03em;
 }
 
 .logo a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-accent);
 }
 
 nav ul {
@@ -253,9 +265,39 @@ nav a:hover::after {
 
   /* Background - replace with actual Naqsh image */
   background:
-    linear-gradient(to bottom, rgba(45, 90, 61, 0.7), rgba(45, 90, 61, 0.5)),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
     url("../images/6.jpg") center/cover no-repeat;
-  background-color: var(--color-primary); /* Fallback */
+  background-color: var(--color-text); /* Fallback */
+}
+
+/* ----------------
+   FLOATING WHATSAPP BUTTON
+   ---------------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* WhatsApp Green */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 2000;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-4px);
+  color: #fff;
+}
+
+.whatsapp-float svg {
+  width: 24px;
+  height: 24px;
 }
 
 .hero-content {
@@ -269,11 +311,22 @@ nav a:hover::after {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.hero-trust {
+  color: #ffd700; /* Gold */
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
 .hero-subtitle {
   color: var(--color-text-on-dark);
   font-size: 1.25rem;
   margin-bottom: var(--space-md);
   opacity: 0.95;
+  line-height: 1.5;
 }
 
 #hero .btn-primary {
@@ -339,6 +392,25 @@ nav a:hover::after {
   padding: var(--space-md);
   background-color: var(--color-bg);
   border-radius: var(--radius-lg);
+  position: relative;
+  z-index: 10;
+}
+
+/* Trust Signals */
+.trust-signals {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.trust-signals span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .form-group {
@@ -438,6 +510,48 @@ nav a:hover::after {
   color: var(--color-text-light);
   margin-bottom: 0;
   font-size: 0.95rem;
+}
+
+/* ----------------
+   GALLERY SECTION
+   ---------------- */
+#gallery {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--color-bg-alt); /* Slight contrast */
+  text-align: center;
+}
+
+#gallery h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-sm);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4/3; /* Consistent shape */
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1); /* Zoom effect */
 }
 
 /* ----------------
@@ -619,12 +733,68 @@ nav a:hover::after {
     padding: var(--space-sm);
   }
 
+  /* Hamburger Menu Button */
+  #mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto; /* Push to right if needed */
+  }
+
+  #mobile-menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 3px;
+    transition: all var(--transition-fast);
+  }
+
+  /* Animate to X when active */
+  #mobile-menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  #mobile-menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Nav Container - Hidden by default on mobile */
+  nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal);
+  }
+
+  nav.active {
+    max-height: 300px; /* Adjust as needed */
+    margin-top: var(--space-sm);
+  }
+
   nav ul {
-    gap: var(--space-sm);
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: center;
+    padding: var(--space-sm) 0;
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
   }
 
   nav a {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    display: block;
+    padding: var(--space-xs) var(--space-md);
   }
 
   /* Form stacks vertically */
@@ -776,95 +946,160 @@ select:focus {
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
-}
-
-.room-badge {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
   font-weight: 600;
 }
 
-/* Room Details */
-.room-details {
+/* ----------------
+   AVAILABILITY FORM REDESIGN
+   ---------------- */
+#availability-form {
+  background: var(--color-white);
   padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Booking Mode Toggle (High Visibility Pill) */
+.booking-mode-toggle {
   display: flex;
-  flex-direction: column;
+  background: #f0f0f0;
+  border-radius: var(--radius-full);
+  padding: 6px;
+  margin-bottom: 24px;
+  gap: 10px;
+  border: 1px solid #ddd;
 }
 
-.room-details h2 {
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-  font-size: 1.75rem;
-}
-
-.room-description {
-  color: var(--color-text-light);
-  margin-bottom: var(--space-sm);
-}
-
-.room-meta {
-  display: flex;
-  gap: var(--space-md);
-  margin-bottom: var(--space-sm);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--color-bg-alt);
-}
-
-.meta-item {
-  font-size: 0.9rem;
-  color: var(--color-text);
-}
-
-.meta-item strong {
-  color: var(--color-text-light);
-  font-weight: 500;
-}
-
-/* Room Pricing */
-.room-pricing {
-  display: flex;
-  gap: var(--space-md);
-  margin-bottom: var(--space-sm);
-}
-
-.price-option {
+.mode-option {
   flex: 1;
-  background-color: var(--color-bg);
-  padding: var(--space-sm);
-  border-radius: var(--radius-sm);
   text-align: center;
+  padding: 12px 20px; /* Larger touch area */
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: all 0.3s ease;
+  font-weight: 800; /* Bolder */
+  font-size: 1rem; /* Larger text */
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.price-label {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--color-text-light);
-  margin-bottom: 0.25rem;
+/* Hide the actual radio button */
+.mode-option input {
+  display: none;
 }
 
-.price-value {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-primary);
+/* Active State for Toggle */
+.mode-option:has(input:checked) {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-primary);
 }
 
-.price-note {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--color-text-light);
+.mode-option:hover:not(:has(input:checked)) {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Form Grid Layout */
+.form-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Columns */
+  gap: var(--space-md);
+  row-gap: var(--space-md);
+}
+
+/* Full width elements in grid */
+.form-full-width {
+  grid-column: 1 / -1;
+}
+
+/* Meal Plan specific */
+.meal-plan-group {
+    grid-column: 1 / -1; /* Take full width */
+    background: var(--color-bg);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.radio-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: none; /* Remove background from inner container */
+  padding: 0;
+}
+
+.radio-label {
+    background: var(--color-white);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-bg-alt);
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Price Summary Box */
+.price-summary {
+  background: #fdfbf7; /* Very light warm grey */
+  border: 1px solid #e0e0e0;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.price-summary h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+}
+
+.breakdown-table {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.breakdown-table th {
+    text-align: left;
+    font-size: 0.85rem;
+    color: #666;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.breakdown-table td {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    border-top: 2px dashed #ddd;
+    padding-top: 16px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .form-grid-layout {
+    grid-template-columns: 1fr; /* Stack vertically on mobile */
+  }
+}  color: var(--color-text-light);
   margin-top: 0.25rem;
 }
 
 .weekend-note {
-  font-size: 0.85rem;
   color: var(--color-text-light);
   margin-bottom: var(--space-sm);
 }
@@ -1565,5 +1800,125 @@ nav a.active::after {
   body {
     background: white;
     color: black;
+  }
+}
+
+/* ----------------
+   AVAILABILITY / ROOM CARDS (ADDED & FIXED)
+   ---------------- */
+/* ----------------
+   AVAILABILITY / ROOM CARDS (ADDED & FIXED)
+   ---------------- */
+.room-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Normalized width */
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  text-align: left;
+  max-width: 1000px; /* Slightly wider to breathe */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.room-card-mini {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.room-card-mini:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.room-card-mini img {
+  width: 100%;
+  height: 180px; /* Restored height for better visibility */
+  object-fit: cover;
+}
+
+.room-mini-info {
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Fills height */
+}
+
+.room-mini-info h4 {
+  font-size: 1.1rem; /* Better hierarchy */
+  margin-bottom: 8px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* New Price List Styling */
+.price-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+
+.price-item {
+  background-color: var(--color-white);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent-hover); /* Darker gold/bronze */
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.room-mini-info .desc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: auto; /* Push to bottom if needed */
+  color: var(--color-text-light);
+}
+
+/* Meal Plan Radio */
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--color-bg-alt);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.radio-label span small {
+  display: block;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+/* Form Row Layout */
+.form-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
   }
 }
