@@ -134,12 +134,14 @@ _MAPAI (Breakfast + Dinner) available at additional cost_
 - [x] Responsive design
 - [x] CSS styling complete
 
-### Phase 2: JavaScript Functionality
+### Phase 2: JavaScript Functionality ✅
 
-- [ ] Date picker validation
-- [ ] Booking type toggle
-- [ ] Form validation
-- [ ] Mobile menu hamburger
+- [x] Date picker validation
+- [x] Booking type toggle
+- [x] Form validation
+- [x] Mobile menu hamburger
+- [x] Dynamic Pricing Calculator
+- [x] WhatsApp Integration
 
 ### Phase 3: Backend Integration
 
