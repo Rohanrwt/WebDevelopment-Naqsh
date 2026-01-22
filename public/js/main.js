@@ -186,44 +186,90 @@ document.addEventListener("DOMContentLoaded", function () {
     priceSummary.classList.remove("hidden");
   }
 
-  function handleFormSubmit(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
     const isGroup = document.querySelector('input[name="booking-mode"]:checked').value === "group";
     const checkin = inputs.checkin.value;
     const checkout = inputs.checkout.value;
     const guests = inputs.guests.value;
-    const total = totalDisplay.innerText;
+    // Clean string to number
+    const totalAmount = parseInt(totalDisplay.innerText.replace(/[^0-9]/g, "")) || 0;
     
+    // New Fields
+    const guestName = document.getElementById("guest-name") ? document.getElementById("guest-name").value : "";
+    const guestPhone = document.getElementById("guest-phone") ? document.getElementById("guest-phone").value : "";
+
     if (!checkin || !checkout) {
         alert("Please select check-in and check-out dates.");
         return;
     }
 
+    // 1. Prepare Data
+    const bookingData = {
+        guestName,
+        guestPhone,
+        checkIn: checkin,
+        checkOut: checkout,
+        guests: parseInt(guests) || 0,
+        totalAmount,
+        isGroupBooking: isGroup,
+        mealPlan: "EP", // Default
+        roomType: "Group Booking" 
+    };
+
     let message = "";
     if (isGroup) {
-         message = `*Group Booking Inquiry* 🏰%0a` +
+         message = `*Group Booking Request* 🏰%0a` +
+                   `Name: ${guestName}%0a` +
+                   `Phone: ${guestPhone}%0a` +
                    `Dates: ${checkin} to ${checkout}%0a` +
                    `Type: Full Resort Buyout%0a` +
                    `Est. Guests: ${guests}%0a` +
-                   `Total Estimate: ${total}%0a%0a` +
-                   `Hi, we are interested in booking the entire resort.`;
+                   `Total Estimate: ₹${totalAmount.toLocaleString()}%0a%0a` +
+                   `Hi, I would like to confirm this group booking.`;
     } else {
          const room = inputs.room.value;
          const plan = document.querySelector('input[name="meal-plan"]:checked').value;
+         
          if (!room) {
              alert("Please select a room.");
              return;
          }
-         message = `*Booking Inquiry* 🏨%0a` +
+         
+         bookingData.roomType = room.split(" (")[0];
+         bookingData.mealPlan = plan.includes("MAPAI") ? "MAPAI" : "EP";
+         
+         message = `*Booking Request* 🏨%0a` +
+                   `Name: ${guestName}%0a` +
+                   `Phone: ${guestPhone}%0a` +
                    `Dates: ${checkin} to ${checkout}%0a` +
                    `Room: ${room}%0a` +
                    `Plan: ${plan}%0a` +
                    `Guests: ${guests}%0a` +
-                   `Total Estimate: ${total}%0a%0a` +
-                   `Is this room available?`;
+                   `Total Estimate: ₹${totalAmount.toLocaleString()}%0a%0a` +
+                   `Hi, checking availability for this room.`;
     }
 
-    window.open(`https://wa.me/919045467967?text=${message}`, "_blank");
+    // 2. Send to Backend
+    try {
+        console.log("Sending booking data...", bookingData);
+        const response = await fetch('/api/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        });
+        
+        const result = await response.json();
+        console.log("DB Response:", result);
+    } catch (err) {
+        console.error("Failed to save booking to DB:", err);
+    }
+
+    // 3. WhatsApp
+    const whatsappUrl = `https://wa.me/919045467967?text=${message}`;
+    window.open(whatsappUrl, "_blank");
   }
 
 });

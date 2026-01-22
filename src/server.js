@@ -1,10 +1,23 @@
 const express = require('express');
+const cors = require('cors'); // Added this
 const path = require('path');
+require('dotenv').config();
+const connectDB = require('./config/db');
+
+// Connect Database
+connectDB();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
+// Enable CORS
+app.use(cors());
+
+// Middleware
 app.use(express.json());
+
+// Routes
+app.use('/api/bookings', require('./routes/bookingRoutes'));
 
 // Serve Static Files (The Frontend)
 app.use(express.static(path.join(__dirname, '../public')));
